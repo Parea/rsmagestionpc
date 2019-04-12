@@ -2,84 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Computers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Assignments;
+use App\Computers;
+use App\Clients;
+use App\Hours;
 
 class ComputersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+     
+    public function all(){
+        $assignments = Assignments::all();
+        $computers = Computers::all(['id','number']);
+        $clients = Clients::all(['id','firstname']);
+        $hours = Hours::all(['id','start_at','end_at']);
+        return view('computers.computers',['assignments'=>$assignments, 'computers' => $computers,'clients' => $clients, 'hours'=>$hours]);
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function show($assignmentId){
+        $assignment = Assignments::find($assignmentId);
+        return view('computers.computer');
+
+    
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function new(){
+        return view('computers.computer-form');
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Computers  $computers
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Computers $computers)
-    {
-        //
+    public function create(Request $request){
+        $input = $request->all();
+        $assignment = new Assignments();
+        $assignment ->client_id = $input['client_id'];
+        $assignment ->computer_id = $input['computer_id'];
+        $assignment ->hour_id = $input['hour_id'];
+        $assignment ->save();
+        return view('computers.computer-create-confirmation');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Computers  $computers
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Computers $computers)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Computers  $computers
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Computers $computers)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Computers  $computers
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Computers $computers)
-    {
-        //
+    
+    public function destroy($assignmentId){
+        $assignments = Assignments::find($assignmentId);
+        $assignments ->delete();
+        return view('computers.computer-delete');
     }
 }

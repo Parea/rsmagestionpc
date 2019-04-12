@@ -9,7 +9,7 @@
 				Merci. Le client à bien été ajouté.
 			</div>
 			<div>
-				<a href="{{ url('/home/users') }}" button class="btn btn-primary btn-small pull-right">Retour</a>
+				<a href="{{ url('/home/clients') }}" button class="btn btn-primary btn-small pull-right">Retour</a>
 			</div>
 		</div>
 	</div>

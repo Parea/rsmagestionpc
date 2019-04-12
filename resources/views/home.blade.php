@@ -14,8 +14,8 @@
                         </div>
                     @endif
                     Vous êtes bien connecté!
-                        @if ($users->id == 1 )<div class="panel-heading"><a href="home/news">Voir tous les ordinateurs utilisées</a><br/></div>@endif
-                        @if ($users->id == 1 )<div class="panel-heading"><a href="home/news/new">Associé un client vers un ordinateur</a><br/></div>@endif
+                        @if ($users->id == 1 )<div class="panel-heading"><a href="home/assignments">Voir tous les ordinateurs utilisées</a><br/></div>@endif
+                        @if ($users->id == 1 )<div class="panel-heading"><a href="home/assignment/new">Associé un client vers un ordinateur</a><br/></div>@endif
                         @if ($users->id == 1 )<div class="panel-heading"><a href="home/client/new">Ajouter un nouveau client</a></div>@endif
                         @if ($users->id == 1 )<div class="panel-heading"><a href="home/clients">Voir tous les clients</a></div>@endif
                 </div>

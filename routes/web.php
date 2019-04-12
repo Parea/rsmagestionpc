@@ -23,3 +23,9 @@ Route::get('home/client/new', 'ClientsController@new');
 Route::get('home/client/{clientId}', 'ClientsController@show');
 Route::post('home/client/create', 'ClientsController@create');
 Route::get('home/client/{clientId}/delete', 'ClientsController@destroy');
+
+Route::get('home/assignments', 'ComputersController@all');
+Route::get('home/assignment/new', 'ComputersController@new');
+Route::get('home/assignment/{clientId}', 'ComputersController@show');
+Route::post('home/assignment/create', 'ComputersController@create');
+Route::get('home/assignment/{clientId}/delete', 'ComputersController@destroy');
