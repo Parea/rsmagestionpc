@@ -13,9 +13,9 @@ class AssignmentsTableSeeder extends Seeder
     public function run()
     {
         DB::table('assignments')->insert([
-            'client_id' => 3,
+            'client_id' => 1,
             'computer_id' => 1,
-            'hour_id' => 1,
+            'hour_id' => 2,
         ]);
 
         DB::table('assignments')->insert([
