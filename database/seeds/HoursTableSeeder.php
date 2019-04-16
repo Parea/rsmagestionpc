@@ -13,13 +13,35 @@ class HoursTableSeeder extends Seeder
     public function run()
     {
         DB::table('hours')->insert([
-            'start_at'=>"8h00",
-            'end_at' =>"12h00",
+            'start_and_end_at'=>"8h00/9h00",
         ]);
 
         DB::table('hours')->insert([
-            'start_at'=>"13h00",
-            'end_at' =>"17h00",
+            'start_and_end_at'=>"9h00/10h00",
+        ]);
+
+        DB::table('hours')->insert([
+            'start_and_end_at'=>"10h00/11h00",
+        ]);
+
+        DB::table('hours')->insert([
+            'start_and_end_at'=>"11h00/12h00",
+        ]);
+
+        DB::table('hours')->insert([
+            'start_and_end_at'=>"13h00/14h00",
+        ]);
+
+        DB::table('hours')->insert([
+            'start_and_end_at'=>"14h00/15h00",
+        ]);
+
+        DB::table('hours')->insert([
+            'start_and_end_at'=>"15h00/16h00",
+        ]);
+
+        DB::table('hours')->insert([
+            'start_and_end_at'=>"16h00/17h00",
         ]);
     }
 }

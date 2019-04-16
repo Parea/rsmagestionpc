@@ -8,19 +8,12 @@
         <div class="panel-heading">Associé un PC a un visiteur</div>
           <div class="panel-body">
             {!! Form::open(['url' =>'/home/assignment/create']) !!}
-            <label>Clients</label>{{ Form::select('client_id', $client, '', ['class' => 'form-control']) }}<br/>
-            <label>Ordinateur</label>{!! Form::select('computer_id', $computer, '', ['class' => 'form-control'])!!}<br/>
+            <label>Visiteurs</label>{{ Form::select('client_id', $client, '', ['class' => 'form-control']) }}<br/>
+            <label>Ordinateurs</label>{!! Form::select('computer_id', $computer, '', ['class' => 'form-control'])!!}<br/>
             <label>Horaires</label>{!! Form::select('hour_id', $hour, '', ['class' => 'form-control']) !!}<br/>
             {!! Form::submit('Associé !', ['class' => 'btn btn-success pull-right']) !!}<br/>
             {!! Form::close() !!}
-            {{-- <label for="clients-content">Visiteur</label>
-              <select name="clients" id="clients" class="form-control input-lg dynamic">+
-                <option value="">Selectionner visiteur</option>
-                
-                @foreach($clients as $client)
-                  <option value="{{ $client->id}}">{{ $client->firstname }}</option>
-                @endforeach
-              </select> --}}
+              </select>
           </div>
         </div>
     </div>

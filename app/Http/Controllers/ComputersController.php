@@ -14,11 +14,16 @@ class ComputersController extends Controller
 {
      
     public function all(){
-        $assignments = Assignments::all();
-        $client = Clients::pluck('firstname');
-        $computer = Computers::all();
-        $hour = Hours::pluck('start_at');
-        return view('computers.computers',['assignments' => $assignments, 'client' => $client, 'computer' => $computer, 'hour' => $hour]);
+        $assignments = Assignments::select('assignments.id as id','clients.id as client_id',
+        'clients.firstname as firstname', 'computers.id as computer_id',
+        'computers.number as name_pc', 'hours.id as hour_id',
+        'hours.start_and_end_at as hour_range')
+        ->join('clients','clients.id','assignments.client_id')
+        ->join('computers','computers.id','assignments.computer_id')
+        ->join('hours','hours.id','assignments.hour_id')
+        ->orderBy('assignments.id', 'asc')
+        ->get();
+        return view('computers.computers')->with(['assignments' => $assignments]);
         
     }
 
@@ -30,10 +35,11 @@ class ComputersController extends Controller
     }
 
     public function new(){
+        $assignment = Assignments::all();
         $client = Clients::pluck('firstname');
-        $computer = Computers::pluck('number');
-        $hour = Hours::pluck('start_at','end_at');
-        return view('computers.computer-form',['client' => $client, 'computer' => $computer, 'hour' => $hour]);
+        $computer = Computers::where('computers.availability',0)->pluck('number');
+        $hour = Hours::pluck('start_and_end_at');
+        return view('computers.computer-form',['assignment' => $assignment,'client' => $client, 'computer' => $computer, 'hour' => $hour]);
 
     }
 
